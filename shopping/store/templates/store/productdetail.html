@@ -1,0 +1,80 @@
+{% extends 'store/base.html' %} 
+{% load static %}
+ {% block title%}product-detail {% endblock title %} 
+ 
+ {% block content %}
+{% comment %} <div class="row">
+  {% for result in result %}
+  <div class="col-md-6 text-black">
+
+    <div class="image">
+      <img src="{{ result.image.url}}" />
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="detail">
+      {{ result.title }} <br>
+      price : ${{result.selling_price}}<strike class="strikesize"> list price:${{result.marked_price}}</strike>
+      <div>discount: {{result.discount_rate}}</div>
+      
+    </div>
+    <button class="addcart-btn">Add to cart</button> <br><br>
+    description :{{result.description}}
+    <p>Warranty: {{ result.warranty }}</p>
+    return polict : {{result.return_policy}}
+  
+
+    {% endfor %}
+</div> {% endcomment %}
+
+
+<div class="row">
+  {% for result in result %}
+  <div class="col-md-6 text-black">
+
+    <div class="image">
+      <img src="{{ result.image.url}}" />
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="detail">
+      {{ result.title }} <br>
+      price : ${{result.selling_price}}<strike class="strikesize"> list price:${{result.marked_price}}</strike>
+      <div>discount: {{result.discount_rate}}</div>
+      
+    </div>
+    <button class="addcart-btn"><a href="{% url 'cartadd' result.id %}">Add to cart</a></button> <br><br>
+    description :{{result.description}}
+    <p>Warranty: {{ result.warranty }}</p>
+    return polict : {{result.return_policy}}
+  
+    {% endfor %}
+</div>
+<hr>
+    
+    <div class="row">
+      {% for product in data %}
+      <div class="col-lg-4  text-black">
+          <a href="{% url 'product_detail' product.slug %}">
+          <div class="image">
+          
+              <img src={{product.image.url}}>
+  
+          </div>
+          <h5><strong>{{product.title}}</strong></h5>
+          <hr>
+          <button class="addcart-btn"><a href="{% url 'cartadd' product.id %}">Add to cart</a></button>
+          </a>
+  
+          <h4 style=" float: right">${{product.selling_price}}<strike class="strikesize"> ${{product.marked_price}}</strike></h4>
+          {{product.discount_rate}}
+      </div>
+      {% endfor %}
+  </div>
+      
+
+
+
+{% endblock content %}

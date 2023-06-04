@@ -1,0 +1,65 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+      store
+{% endblock title %}
+
+{% block content %}
+
+    
+<div class="row">
+    {% for product in result %}
+    <div class="col-lg-4  text-black">
+        <a href="{% url 'product_detail' product.slug %}">
+        <div class="image">
+            <img src={{product.image.url}}>
+
+        </div>
+        <h5><strong>{{product.title}}</strong></h5>
+    </a>
+        <hr>
+        <button class="addcart-btn"><a href="{% url 'cartadd' product.id %}">Add to cart</a></button>
+        
+
+        <h4 style=" float: right">${{product.selling_price}}<strike class="strikesize"> ${{product.marked_price}}</strike></h4>
+        {{product.discount_rate}}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="sticky-footer">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+
+        <li class="page-item"><a class="page-link" href="?page=1">first</a></li>
+        {% if service.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{service.previous_page_number}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        {% endif %}
+        {% for n in totalpagelist %}
+          <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+        {% endfor %}
+        {% if service.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{service.next_page_number}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        {% endif %}
+        <li class="page-item"><a class="page-link" href="?page={{lastpage}}">Last</a></li>
+        
+          
+      </ul>
+    </nav>
+  </div>
+
+
+
+
+{% endblock content %}
