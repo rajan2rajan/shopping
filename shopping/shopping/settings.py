@@ -86,16 +86,7 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-# 	'default': {
-# 		'ENGINE': 'django.db.backends.mysql',
-# 		'NAME': 'shoppingwebsite',
-# 		'USER': 'root',
-# 		'PASSWORD': 'R@9865177862i',
-# 		'HOST':'127.0.0.1',
-# 		'PORT':'3306',
-# 	}
-# }
+
  
 
 
